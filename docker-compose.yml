@@ -1,0 +1,11 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      target: ${ENV_MODE}
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/project/backend
