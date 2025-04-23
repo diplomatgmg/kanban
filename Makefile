@@ -10,3 +10,7 @@ up: ## compose up
 down: ## compose down
 	docker compose down
 .PHONY: down
+
+front: ## Запуск electron
+	cd frontend && npm run start
+.PHONY: front
