@@ -1,3 +1,3 @@
-export const BASE_URL = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:8000'
-  : 'https://your-production-url.com';
+const BASE_URL = 'http://localhost:8000'
+
+module.exports = {BASE_URL}

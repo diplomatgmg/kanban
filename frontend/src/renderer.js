@@ -1,5 +1,6 @@
-import { getTasks } from './api/tasks/getTasks.js';
-import createTask from './api/tasks/postTasks.js';
+const { getTasks } = require('./api/tasks/getTasks.js');
+const { createTask } = require('./api/tasks/postTasks.js');
+
 
 async function renderTasks() {
     const ul = document.getElementById('tasksList');
@@ -47,4 +48,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
