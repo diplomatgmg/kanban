@@ -1,20 +1,18 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.generics import GenericAPIView
+from rest_framework import mixins, generics # Импортируем также generics для удобства
 
-class TestView(APIView):
-    def get(self, request, **kwargs):
-        return Response({
-            "data": "backend is work"
-        })
-
+from apps.kanban.models import Task
+from apps.kanban.serializers import TaskSerializer
 
 
-class TasksView(APIView):
-    def get(self, request, **kwargs):
-        data = [{
-            "id": num,
-            "title": f"Тестовая задача {num}",
-            "description": f"Описание задачи {num}"
-        } for num in range(1, 6)]
+class TaskListCreateView(generics.ListCreateAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
 
-        return Response({"data": data})
+
+class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    lookup_field = 'pk'

@@ -14,3 +14,11 @@ down: ## compose down
 front: ## Запуск electron
 	cd frontend && npm run start
 .PHONY: front
+
+mm: ## Создает миграции БД для бекенда
+	docker compose exec backend python manage.py makemigrations
+.PHONY: mm
+
+migrate: ## Применяет миграции БД для бекенда
+	docker compose exec backend python manage.py migrate
+.PHONY: migrate
