@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { BASE_URL } from '../../constants.js';
+const axios = require('axios');
+const { BASE_URL } = require('../../constants.js');
 
-export default async function createTask({ name, description }) {
+async function createTask({ name, description }) {
   try {
     const response = await axios.post(`${BASE_URL}/api/kanban/tasks`, {
       name,
@@ -13,3 +13,5 @@ export default async function createTask({ name, description }) {
     throw error;
   }
 }
+
+module.exports = {createTask}

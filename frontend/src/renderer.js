@@ -17,8 +17,8 @@ async function renderTasks() {
     }
   }
   
-document.addEventListener('DOMContentLoaded', () => {
-  renderTasks();
+document.addEventListener('DOMContentLoaded', async () => {
+  await renderTasks();
 
   const popup = document.getElementById('popup');
   const createBtn = document.getElementById('createTaskBtn');
