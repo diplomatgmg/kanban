@@ -1,4 +1,5 @@
 import { getTasks } from './api/tasks/getTasks.js';
+import createTask from './api/tasks/postTasks.js';
 
 async function renderTasks() {
     const ul = document.getElementById('tasksList');
@@ -16,5 +17,34 @@ async function renderTasks() {
   }
   
 document.addEventListener('DOMContentLoaded', () => {
-    renderTasks();
+  renderTasks();
+
+  const popup = document.getElementById('popup');
+  const createBtn = document.getElementById('createTaskBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
+  const saveBtn = document.getElementById('saveBtn');
+
+  createBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+
+  saveBtn.addEventListener('click', async () => {
+    const name = document.getElementById('taskName').value;
+    const description = document.getElementById('taskDescription').value;
+
+    try {
+      await createTask(name, description); // используем импортированную функцию
+      popup.style.display = 'none';
+      document.getElementById('taskName').value = '';
+      document.getElementById('taskDescription').value = '';
+      renderTasks();
+    } catch (error) {
+      console.error('Ошибка при создании задачи:', error);
+    }
+  });
 });
+
