@@ -22,4 +22,4 @@ RUN uv sync --no-install-project
 
 COPY . .
 
-CMD uv run manage.py runserver 0.0.0.0:8000
+CMD uv run manage.py migrate && uv run manage.py runserver 0.0.0.0:8000
