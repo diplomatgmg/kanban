@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const saveBtn = document.getElementById('saveBtn');
 
   createBtn.addEventListener('click', () => {
-    popup.style.display = 'none';
+    popup.style.display = 'block';
   });
 
   cancelBtn.addEventListener('click', () => {
