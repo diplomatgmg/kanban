@@ -6,10 +6,36 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <h1>Список задач</h1>
-    <ul id="tasksList">
+    <div class="creation-form">
+      <div class="form-group">
+          <label class="form-label">Название задачи:</label>
+          <input 
+              type="text" 
+              id="taskName" 
+              class="form-input"
+              placeholder="Введите название"
+          >
+      </div>
       
-    </ul>
+      <div class="form-group">
+          <label class="form-label">Описание:</label>
+          <input 
+              type="text" 
+              id="taskDescription" 
+              class="form-input"
+              placeholder="Введите описание"
+          >
+      </div>
+
+      <button id="addBtn">Добавить задачу</button>
+      <button id="deleteAllBtn">Удалить все</button>
+  </div>
+
+  <div class="tasks-list">
+      <h1 style="text-align: center">Список задач</h1>
+      <ul id="tasksList"></ul>
+  </div>
+
+    <script src='renderer.js'> </script>
   </body>
-  <script src="renderer.js"></script>
 </html>
