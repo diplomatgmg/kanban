@@ -1,50 +1,89 @@
 const { getTasks } = require('./api/tasks/getTasks.js');
 const { createTask } = require('./api/tasks/postTasks.js');
-
+const { deleteTask } = require('./api/tasks/deleteTasks.js');
 
 async function renderTasks() {
-    const ul = document.getElementById('tasksList');
-    try {
-        const tasks = await getTasks();
-        ul.innerHTML = '';
-        tasks.forEach(task => {
-            const li = document.createElement('li');
-            li.textContent = `${task.id} | ${task.title} | ${task.description}`;
-            ul.appendChild(li);
-        });
-    } catch (error) {
+  const ul = document.getElementById('tasksList');
+  try {
+      const tasks = await getTasks();
+      ul.innerHTML = '';
+      tasks.forEach(task => {
+          const li = document.createElement('li');
+          li.classList.add('task-item');
+          li.innerHTML = `
+              <div class="task-header">
+                  <span class="task-title">${task.title}</span>
+                  <button class="delete-btn" onclick="deleteTaskHandler(${task.id})">Удалить</button>
+              </div>
+              <p class="task-description">${task.description}</p>
+          `;
+          ul.appendChild(li);
+      });
+  } catch (error) {
       ul.innerHTML = '<li>Не удалось загрузить задачи</li>';
-    }
   }
+}
+
+async function deleteAllTasks() {
+  try {
+      const tasks = await getTasks();
+      const results = await Promise.allSettled(
+        tasks.map(task => deleteTask(task.id))
+      );
   
+      return true;
+  } catch (error) {
+      console.error('Ошибка удаления:', error);
+      return false;
+  }
+}
+
+async function deleteTaskHandler(taskId) {
+  try {
+      await deleteTask(taskId);
+      renderTasks();
+  } catch (error) {
+      alert('Ошибка при удалении задачи');
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   await renderTasks();
 
-  const popup = document.getElementById('popup');
-  const createBtn = document.getElementById('createTaskBtn');
-  const cancelBtn = document.getElementById('cancelBtn');
-  const saveBtn = document.getElementById('saveBtn');
+  const addBtn = document.getElementById('addBtn');
+  const taskName = document.getElementById('taskName');
+  const taskDescription = document.getElementById('taskDescription');
+  const DeleteAllBtn = document.getElementById('deleteAllBtn');
 
-  createBtn.addEventListener('click', () => {
-    popup.style.display = 'block';
-  });
+  const handleAddTask = async () => {
+      if (!taskName.value.trim() || !taskDescription.value.trim()) {
+          alert('Пожалуйста, заполните все поля');
+          return;
+      }
 
-  cancelBtn.addEventListener('click', () => {
-    popup.style.display = 'none';
-  });
+      try {
+          await createTask({
+              name: taskName.value,
+              description: taskDescription.value
+          });
+          
+          taskName.value = '';
+          taskDescription.value = '';
+          await renderTasks();
+      } catch (error) {
+          console.error('Ошибка:', error);
+          alert('Ошибка при создании задачи');
+      }
+  };
 
-  saveBtn.addEventListener('click', async () => {
-    const name = document.getElementById('taskName').value;
-    const description = document.getElementById('taskDescription').value;
-
-    try {
-      await createTask({name, description}); // используем импортированную функцию
-      popup.style.display = 'none';
-      document.getElementById('taskName').value = '';
-      document.getElementById('taskDescription').value = '';
-      renderTasks();
-    } catch (error) {
-      console.error('Ошибка при создании задачи:', error);
+  addBtn.addEventListener('click', handleAddTask);
+  DeleteAllBtn.addEventListener('click', async () => {
+    const success = await deleteAllTasks();
+    if (success) {
+        await renderTasks();
+    } else {
+        alert('Ошибка при удалении!');
     }
   });
 });
+

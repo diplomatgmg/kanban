@@ -6,19 +6,35 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <button id="createTaskBtn">Создать задачу</button>
+    <div class="creation-form">
+      <div class="form-group">
+          <label class="form-label">Название задачи:</label>
+          <input 
+              type="text" 
+              id="taskName" 
+              class="form-input"
+              placeholder="Введите название"
+          >
+      </div>
+      
+      <div class="form-group">
+          <label class="form-label">Описание:</label>
+          <input 
+              type="text" 
+              id="taskDescription" 
+              class="form-input"
+              placeholder="Введите описание"
+          >
+      </div>
 
-    <h1>Список задач</h1>
-    <ul id="tasksList">
-    </ul>
+      <button id="addBtn">Добавить задачу</button>
+      <button id="deleteAllBtn">Удалить все</button>
+  </div>
 
-    <div id="popup" style="background:white; padding:1rem; border:1px solid #ccc; z-index:1000;">
-      <h2>Новая задача</h2>
-      <input id="taskName" placeholder="Название задачи" /><br /><br />
-      <textarea id="taskDescription" placeholder="Описание задачи"></textarea><br /><br />
-      <button id="cancelBtn">Отменить</button>
-      <button id="saveBtn">Сохранить</button>
-    </div>
+  <div class="tasks-list">
+      <h1 style="text-align: center">Список задач</h1>
+      <ul id="tasksList"></ul>
+  </div>
 
     <script src='renderer.js'> </script>
   </body>
