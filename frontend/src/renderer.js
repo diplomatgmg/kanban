@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const description = document.getElementById('taskDescription').value;
 
     try {
-      await createTask(name, description); // используем импортированную функцию
+      await createTask({name, description}); // используем импортированную функцию
       popup.style.display = 'none';
       document.getElementById('taskName').value = '';
       document.getElementById('taskDescription').value = '';
