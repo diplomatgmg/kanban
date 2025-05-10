@@ -1,13 +1,21 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import generics
+
+from apps.kanban.models import Task
+from apps.kanban.serializers import TaskSerializer
 
 
-class TasksView(APIView):
-    def get(self, request, **kwargs):
-        data = [{
-            "id": num,
-            "title": f"Тестовая задача {num}",
-            "description": f"Описание задачи {num}"
-        } for num in range(1, 6)]
+class TaskListCreateView(generics.ListCreateAPIView):
+    """
+    Получение списка / создание задач
+    """
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
 
-        return Response(data)
+
+class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Детальная информация о задачи / удаление задачи
+    """
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    lookup_field = 'pk'

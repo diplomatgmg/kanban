@@ -1,8 +1,7 @@
-from django.urls.conf import path
-
-from apps.kanban.views import TestView, TasksView
+from django.urls import path
+from .views import TaskListCreateView, TaskDetailView
 
 urlpatterns = [
-    path("test", TestView.as_view()),
-    path("tasks", TasksView.as_view()),
+    path('tasks/', TaskListCreateView.as_view(), name='task-list-create'),
+    path('tasks/<int:pk>/', TaskDetailView.as_view(), name='task-detail'),
 ]
