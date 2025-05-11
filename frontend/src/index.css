@@ -3,8 +3,9 @@ body {
     Arial, sans-serif;
   margin: auto;
   max-width: none;
+  height: 100vh;
   padding: 120px 2rem 2rem;
-  background-color: #234434;
+  background: linear-gradient(#001f3f, #003366, #000000);
 }
 ul {
   list-style-type: none;
@@ -52,7 +53,7 @@ ul {
 }
 
 .delete-btn {
-  background-color: #ad361d;
+  background-color: #c13517;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -103,7 +104,7 @@ ul {
 
 #addBtn {
   padding: 0 24px;
-  background: #176640;
+  background: #0b6f3e;
   color: white;
   border: none;
   border-radius: 4px;
@@ -180,15 +181,15 @@ ul {
 }
 
 #todo > .tasks-list {
-  background-color: #d3b128;
+  background-color: #09bbd5;
 }
 
 #inProgress > .tasks-list {
-  background-color: #cd7f3c;
+  background-color: #099dd5;
 }
 
 #done > .tasks-list {
-  background-color: #954c34;
+  background-color: #097ed5;
 }
 
 .tasks-list.dragover {
