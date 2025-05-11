@@ -91,6 +91,7 @@ ul {
 
 .form-label {
   white-space: nowrap;
+  font-weight: bold;
 }
 
 .form-input {
@@ -102,6 +103,10 @@ ul {
   box-sizing: border-box;
 }
 
+#taskDescription.form-input {
+  width: 350px;
+}
+
 #addBtn {
   padding: 0 24px;
   background: #0b6f3e;
@@ -111,7 +116,6 @@ ul {
   cursor: pointer;
   height: 40px;
   white-space: nowrap;
-  margin-left: 100px;
 }
 
 #addBtn:active {
@@ -120,7 +124,7 @@ ul {
 
 #deleteAllBtn {
   padding: 0 24px;
-  background: #ad361d;
+  background: #c13517;
   color: white;
   border: none;
   border-radius: 4px;
