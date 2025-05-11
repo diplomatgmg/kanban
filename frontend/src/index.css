@@ -3,7 +3,9 @@ body {
     Arial, sans-serif;
   margin: auto;
   max-width: none;
+  height: 100vh;
   padding: 120px 2rem 2rem;
+  background: linear-gradient(#001f3f, #003366, #000000);
 }
 ul {
   list-style-type: none;
@@ -51,7 +53,7 @@ ul {
 }
 
 .delete-btn {
-  background-color: #ff4d4d;
+  background-color: #c13517;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -60,14 +62,15 @@ ul {
   transition: background-color 0.3s;
 }
 
-.delete-btn:hover {
-  background-color: #ff1a1a;
+.delete-btn:active {
+  background-color: #7a1b07;
 }
 
 .creation-form {
   position: fixed;
   top: 20px;
   left: 50%;
+  width: 1170px;
   transform: translateX(-50%);
   background: white;
   padding: 1rem;
@@ -88,6 +91,7 @@ ul {
 
 .form-label {
   white-space: nowrap;
+  font-weight: bold;
 }
 
 .form-input {
@@ -99,9 +103,13 @@ ul {
   box-sizing: border-box;
 }
 
+#taskDescription.form-input {
+  width: 350px;
+}
+
 #addBtn {
   padding: 0 24px;
-  background: #4CAF50;
+  background: #0b6f3e;
   color: white;
   border: none;
   border-radius: 4px;
@@ -110,15 +118,23 @@ ul {
   white-space: nowrap;
 }
 
+#addBtn:active {
+  background-color: #004926;
+}
+
 #deleteAllBtn {
   padding: 0 24px;
-  background: #f44336;
+  background: #c13517;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   height: 40px;
   white-space: nowrap;
+}
+
+#deleteAllBtn:active {
+  background-color: #7a1b07;
 }
 
 .tasks-list {
@@ -166,8 +182,18 @@ ul {
   padding: 1rem;
   margin: 0;
   transition: background-color 0.2s;
-  background: #f8f9fa;
+}
 
+#todo > .tasks-list {
+  background-color: #09bbd5;
+}
+
+#inProgress > .tasks-list {
+  background-color: #099dd5;
+}
+
+#done > .tasks-list {
+  background-color: #097ed5;
 }
 
 .tasks-list.dragover {
