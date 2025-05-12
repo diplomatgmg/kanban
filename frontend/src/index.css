@@ -2,8 +2,10 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif;
   margin: auto;
-  max-width: 20rem;
-  padding: 2rem;
+  max-width: none;
+  height: 100vh;
+  padding: 120px 2rem 2rem;
+  background: linear-gradient(#001f3f, #003366, #000000);
 }
 ul {
   list-style-type: none;
@@ -25,7 +27,7 @@ ul {
 }
 
 .task-item:hover {
-  transform: translateY(-5px); /* Лёгкое поднятие при наведении */
+  transform: translateY(-5px);
 }
 
 .task-header {
@@ -51,7 +53,7 @@ ul {
 }
 
 .delete-btn {
-  background-color: #ff4d4d;
+  background-color: #c13517;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -60,14 +62,15 @@ ul {
   transition: background-color 0.3s;
 }
 
-.delete-btn:hover {
-  background-color: #ff1a1a;
+.delete-btn:active {
+  background-color: #7a1b07;
 }
 
 .creation-form {
   position: fixed;
   top: 20px;
   left: 50%;
+  width: 1170px;
   transform: translateX(-50%);
   background: white;
   padding: 1rem;
@@ -88,6 +91,7 @@ ul {
 
 .form-label {
   white-space: nowrap;
+  font-weight: bold;
 }
 
 .form-input {
@@ -99,9 +103,13 @@ ul {
   box-sizing: border-box;
 }
 
+#taskDescription.form-input {
+  width: 350px;
+}
+
 #addBtn {
   padding: 0 24px;
-  background: #4CAF50;
+  background: #0b6f3e;
   color: white;
   border: none;
   border-radius: 4px;
@@ -110,15 +118,23 @@ ul {
   white-space: nowrap;
 }
 
+#addBtn:active {
+  background-color: #004926;
+}
+
 #deleteAllBtn {
   padding: 0 24px;
-  background: #f44336;
+  background: #c13517;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   height: 40px;
   white-space: nowrap;
+}
+
+#deleteAllBtn:active {
+  background-color: #7a1b07;
 }
 
 .tasks-list {
@@ -126,4 +142,90 @@ ul {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.kanban-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.kanban-board {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  margin-top: 40px;
+  padding: 1rem;
+  overflow-x: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.board-column {
+  flex: 1;
+  min-width: 300px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.board-column h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.tasks-list {
+  min-height: 60vh;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0;
+  transition: background-color 0.2s;
+}
+
+#todo > .tasks-list {
+  background-color: #09bbd5;
+}
+
+#inProgress > .tasks-list {
+  background-color: #099dd5;
+}
+
+#done > .tasks-list {
+  background-color: #097ed5;
+}
+
+.tasks-list.dragover {
+  background-color: #f8f9fa;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.task-item {
+
+  cursor: move;
+  user-select: none;
+}
+
+.task-item.dragging {
+  opacity: 0.5;
+  transform: rotate(2deg);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .creation-form {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+  
+  .form-group {
+    width: 100%;
+  }
+  
+  .board-column {
+    min-width: 280px;
+  }
 }

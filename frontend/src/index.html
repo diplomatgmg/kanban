@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Kanban Tasks</title>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="index.css"/>
   </head>
   <body>
     <div class="creation-form">
@@ -30,12 +30,24 @@
       <button id="addBtn">Добавить задачу</button>
       <button id="deleteAllBtn">Удалить все</button>
   </div>
-
-  <div class="tasks-list">
-      <h1 style="text-align: center">Список задач</h1>
-      <ul id="tasksList"></ul>
+  <div class="kanban-container">
+    <div class="kanban-board">
+      <div class="board-column" id="todo">
+        <h2>Новое</h2>
+        <ul class="tasks-list" data-status="todo"></ul>
+      </div>
+      
+      <div class="board-column" id="inProgress">
+        <h2>В работе</h2>
+        <ul class="tasks-list" data-status="in_progress"></ul>
+      </div>
+      
+      <div class="board-column" id="done">
+        <h2>Завершено</h2>
+        <ul class="tasks-list" data-status="done"></ul>
+      </div>
+    </div>
   </div>
-
-    <script src='renderer.js'> </script>
+  <script src='renderer.js'> </script>
   </body>
 </html>

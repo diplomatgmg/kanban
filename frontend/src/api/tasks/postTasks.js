@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { BASE_URL } = require('../../constants.js');
 
-async function createTask({ name, description }) {
+async function createTask({ name, description, status }) {
   if (!name && !description) {
     throw new Error('name и description обязательны');
   }
@@ -10,6 +10,7 @@ async function createTask({ name, description }) {
     const response = await axios.post(`${BASE_URL}/api/kanban/tasks/`, {
       title: name,
       description,
+      status,
     });
     return response.data;
   } catch (error) {
