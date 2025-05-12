@@ -206,3 +206,9 @@ function init() {
 }
 
 init();
+
+module.exports = {
+  renderTasks,
+  deleteAllTasks,
+  deleteTaskHandler,
+};

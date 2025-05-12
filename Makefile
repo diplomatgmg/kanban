@@ -28,3 +28,9 @@ mm: ## Создает миграции БД для бекенда
 migrate: ## Применяет миграции БД для бекенда
 	docker compose exec backend python manage.py migrate
 .PHONY: migrate
+
+test:
+	npm --prefix ./frontend test
+
+test-coverage:
+	npx --prefix ./frontend jest --coverage --config=./frontend/jest.config.js
