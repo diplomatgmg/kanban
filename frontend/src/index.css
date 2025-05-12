@@ -43,11 +43,17 @@ ul {
 }
 
 .task-title {
+  white-space: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 1.2em;
   color: #333;
 }
 
 .task-description {
+  white-space: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 1em;
   color: #777;
 }
