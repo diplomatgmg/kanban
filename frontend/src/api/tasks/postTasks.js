@@ -3,7 +3,7 @@ const { BASE_URL } = require('../../constants.js');
 
 async function createTask({ name, description }) {
   if (!name && !description) {
-    throw new Error("name и description обязательны")
+    throw new Error('name и description обязательны');
   }
 
   try {
@@ -18,4 +18,4 @@ async function createTask({ name, description }) {
   }
 }
 
-module.exports = {createTask}
+module.exports = { createTask };
